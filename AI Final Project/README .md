@@ -44,11 +44,22 @@ pip install Flask requests
 
 ## 🚀 如何執行與使用
 
-### 步驟 1：設定 API Keys
-由於資安考量，程式碼中的 `GEMINI_KEY` 需要替換為您個人申請的金鑰。
-1. 請至 [Google AI Studio](https://aistudio.google.com/app/apikey) 申請一組免費的 Gemini API Key（以 `AIza` 開頭）。
-2. 用文字編輯器打開 `app_1120845.py`。
-3. 找到第 17 行的 `GEMINI_KEY = 'YOUR_API_KEY_HERE'`，將您的金鑰貼上並存檔。
+### 步驟 1：申請並設定 API Keys
+由於資安考量，程式碼中的金鑰需要替換為您個人申請的版本才能順利執行。請用文字編輯器打開 `app_1120845.py`，並填入以下四組金鑰：
+
+1. **TDX_ID & TDX_KEY (交通部 TDX 平台)**
+   * 請至 [TDX 運輸資料流通服務平台](https://tdx.transportdata.tw/) 註冊會員。
+   * 登入後進入「會員中心」>「資料服務」>「API 金鑰」，新增一把金鑰。
+   * 將獲得的 `Client Id` 填入程式碼的 `TDX_ID`，`Client Secret` 填入 `TDX_KEY`。
+
+2. **CWA_KEY (氣象署開源資料平台)**
+   * 請至 [氣象資料開放平臺](https://opendata.cwa.gov.tw/) 註冊會員。
+   * 登入後進入「取得授權碼」，將那串授權碼填入程式碼的 `CWA_KEY`。
+
+3. **GEMINI_KEY (Google Gemini AI)**
+   * 請至 [Google AI Studio](https://aistudio.google.com/app/apikey) 登入 Google 帳號。
+   * 點擊「Create API key」建立一組新的金鑰（通常以 `AIza` 開頭）。
+   * 將金鑰填入程式碼的 `GEMINI_KEY`。
 
 ### 步驟 2：啟動伺服器
 在終端機中，切換到專案資料夾底下，然後執行以下指令：
@@ -72,3 +83,4 @@ python app_1120845.py
 ## ⚠️ 注意事項與常見問題
 * **網頁讀取轉圈圈：** 因為程式需要同時向三個外部伺服器 (氣象署、TDX、Google) 抓取資料，開啟網頁時可能需要等待 1~3 秒鐘。
 * **單字卡沒有出現：** 若 Google Gemini API 額度耗盡或網路連線異常，單字卡區域會顯示連線失敗的提示文字。
+* **火車時刻表空白：** 請確認 TDX 的金鑰是否填寫正確，或是剛好目前時段沒有即將發車的班次。
