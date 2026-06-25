@@ -8,12 +8,12 @@ app = Flask(__name__)
 # ==========================================
 # 填寫你的 API 金鑰
 # ==========================================
-TDX_ID = 's1120845-45bf3bad-1273-4512'
-TDX_KEY = '6f8039bf-ceef-4b78-8187-cd7b77314b9f'
-CWA_KEY = 'CWA-4E06F20D-A591-445B-9298-A0F5E5D54E7F'
+TDX_ID = '您的TDX_ID'
+TDX_KEY = '您的TDX_KEY'
+CWA_KEY = '您的CWA_KEY'
 
 # 🌟 記得換成你申請到的真實 Gemini API Key
-GEMINI_KEY = 'AIzaSyDt2YGOxbFcqdtxFQrNI_3CKbEU_rwepIs'
+GEMINI_KEY = '您的GEMINI_KEY'
 
 def get_weather():
     """去氣象署抓新北市的天氣"""
