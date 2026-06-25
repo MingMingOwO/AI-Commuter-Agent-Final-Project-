@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>通勤小幫手</title>
+    <style>
+        body { font-family: '微軟正黑體', sans-serif; background: #f0f4f8; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 450px; width: 100%; }
+        .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { font-size: 18px; color: #2c3e50; margin-top: 0; border-bottom: 2px solid #3498db; padding-bottom: 5px;}
+        ul { list-style: none; padding: 0; }
+        li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 15px; }
+        .weather-info { font-size: 20px; font-weight: bold; color: #3498db; margin-top: 10px;}
+        
+        /* 翻轉單字卡的設定 */
+        .flashcard-container { perspective: 1000px; height: 120px; margin-top: 15px; }
+        .flashcard { width: 100%; height: 100%; position: relative; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .front, .back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border-radius: 10px; }
+        .front { background-color: #e8f8f5; color: #16a085; }
+        .back { background-color: #fef9e7; color: #f39c12; transform: rotateY(180deg); }
+        .hint { text-align: center; font-size: 13px; color: #95a5a6; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>🌤️ 樹林區今日天氣</h2>
+            <div class="weather-info">{{ weather }}</div>
+        </div>
+
+        <div class="card">
+            <h2>🤖 AI 每日單字 (依天氣推薦)</h2>
+            <div class="flashcard-container" onclick="flipCard()">
+                <div class="flashcard" id="myCard">
+                    <div class="front">{{ word.en }}</div>
+                    <div class="back">{{ word.zh }}</div>
+                </div>
+            </div>
+            <div class="hint">點擊卡片翻面看中文</div>
+        </div>
+
+        <div class="card">
+            <h2>🚆 樹林 ➡️ 內壢 時刻表</h2>
+            <ul>
+                {% for train in train_data %}
+                <li><strong>{{ train.train_no }}車次</strong>: {{ train.dept_time }} 開 ➡️ {{ train.arr_time }} 到</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function flipCard() {
+            const card = document.getElementById('myCard');
+            card.classList.toggle('flipped');
+        }
+    </script>
+</body>
+</html>
